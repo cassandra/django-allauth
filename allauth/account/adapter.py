@@ -446,6 +446,12 @@ class DefaultAccountAdapter(object):
             "current_site": current_site,
             "key": emailconfirmation.key,
         }
+
+        # TODO: Added by ARC for lp_game to allow templates to render urls
+        # to static content (e.g., logos)
+        #
+        ctx['BASE_URL'] = request.build_absolute_uri('/')[:-1]
+
         if signup:
             email_template = 'account/email/email_confirmation_signup'
         else:
@@ -513,7 +519,15 @@ class DefaultAccountAdapter(object):
             cache.set(cache_key, data, app_settings.LOGIN_ATTEMPTS_TIMEOUT)
 
     def is_ajax(self, request):
-        return request.is_ajax()
+
+        # TODO: Added by ARC for lp_game. This is the patch needed to make
+        # lp_game work with this verion!!!!!
+        #
+        # This original body of this was:
+        #
+        #     return request.is_ajax()
+        #
+        return False
 
 
 def get_adapter(request=None):

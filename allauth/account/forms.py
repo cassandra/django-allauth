@@ -531,6 +531,11 @@ class ResetPasswordForm(forms.Form):
                        "password_reset_url": url,
                        "request": request}
 
+            # TODO: Added by arc for lp_game to allow templates to render
+            # urls to static content (e.g., logos)
+            #
+            context['BASE_URL'] = request.build_absolute_uri('/')[:-1]
+
             if app_settings.AUTHENTICATION_METHOD \
                     != AuthenticationMethod.EMAIL:
                 context['username'] = user_username(user)

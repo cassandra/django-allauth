@@ -85,7 +85,11 @@ def render_authentication_error(request,
         request,
         "socialaccount/authentication_error." +
         account_settings.TEMPLATE_EXTENSION,
-        context
+        context,
+
+        # TODO: Added by ARC for lp_game on 2020/03/31 - Was returning 200
+        # and that seems wrong
+        status = 401,
     )
 
 

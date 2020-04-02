@@ -6,8 +6,10 @@ from allauth.socialaccount import providers
 
 from . import app_settings
 
-
-urlpatterns = [path('', include('allauth.account.urls'))]
+# TODO: Change by ARC to support lp_game 2020/4/1. We use our own urls for
+# main pages to allow easier overrides.
+#
+#  urlpatterns = [path('', include('allauth.account.urls'))]
 
 if app_settings.SOCIALACCOUNT_ENABLED:
     urlpatterns += [path('social/', include('allauth.socialaccount.urls'))]

@@ -10,6 +10,8 @@ from . import app_settings
 # main pages to allow easier overrides.
 #
 #  urlpatterns = [path('', include('allauth.account.urls'))]
+#
+urlpatterns = []
 
 if app_settings.SOCIALACCOUNT_ENABLED:
     urlpatterns += [path('social/', include('allauth.socialaccount.urls'))]
